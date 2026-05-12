@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CSS Modal</title>
+  <title>Modal</title>
 
   <style>
 
@@ -24,10 +24,10 @@
       background-color: #f4f4f4;
     }
 
-    /* ================= OPEN BUTTON ================= */
+    /* ================= BUTTON ================= */
 
     #openModal{
-      padding: 12px 22px;
+      padding: 12px 20px;
 
       border: none;
 
@@ -35,9 +35,7 @@
 
       color: white;
 
-      border-radius: 8px;
-
-      font-size: 16px;
+      border-radius: 6px;
 
       cursor: pointer;
     }
@@ -45,6 +43,8 @@
     /* ================= MODAL ================= */
 
     .modal{
+      display: none;
+
       position: fixed;
 
       top: 0;
@@ -55,16 +55,8 @@
 
       background-color: rgba(0,0,0,0.5);
 
-      display: none;
-
       justify-content: center;
       align-items: center;
-    }
-
-    /* show modal */
-
-    .modal.show{
-      display: flex;
     }
 
     /* ================= MODAL CONTENT ================= */
@@ -74,52 +66,33 @@
 
       background-color: white;
 
-      border-radius: 10px;
+      border-radius: 8px;
 
       overflow: hidden;
-
-      animation: popup 0.3s ease;
-    }
-
-    /* animation */
-
-    @keyframes popup{
-
-      from{
-        transform: scale(0.7);
-        opacity: 0;
-      }
-
-      to{
-        transform: scale(1);
-        opacity: 1;
-      }
     }
 
     /* ================= HEADER ================= */
 
     .modal-header{
-      padding: 16px 20px;
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      padding: 15px;
 
       background-color: #0c831f;
 
       color: white;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
     }
 
-    .modal-header h2{
-      font-size: 22px;
-    }
-
-    /* close button */
+    /* ================= CLOSE BUTTON ================= */
 
     .close-modal{
-      background: transparent;
-
       border: none;
+
+      background: transparent;
 
       color: white;
 
@@ -131,11 +104,9 @@
     /* ================= BODY ================= */
 
     .modal-body{
-      padding: 25px 20px;
+      padding: 20px;
 
       font-size: 18px;
-
-      color: #333;
     }
 
   </style>
@@ -143,19 +114,17 @@
 
 <body>
 
-  <!-- ================= BUTTON ================= -->
+  <!-- Button -->
 
   <button id="openModal">
     Open Modal
   </button>
 
-  <!-- ================= MODAL ================= -->
+  <!-- Modal -->
 
   <div class="modal" id="modal">
 
     <div class="modal-content">
-
-      <!-- Header -->
 
       <div class="modal-header">
 
@@ -166,8 +135,6 @@
         </button>
 
       </div>
-
-      <!-- Body -->
 
       <div class="modal-body">
 
@@ -181,27 +148,35 @@
 
   <script>
 
-    const openBtn = document.getElementById("openModal");
+    const openModal =
+      document.getElementById("openModal");
 
-    const modal = document.getElementById("modal");
+    const modal =
+      document.getElementById("modal");
 
-    const closeBtn = document.querySelector(".close-modal");
+    const closeModal =
+      document.querySelector(".close-modal");
 
-    // open modal
-    openBtn.addEventListener("click", () => {
-      modal.classList.add("show");
+    // open
+    openModal.addEventListener("click", function(){
+
+      modal.style.display = "flex";
+
     });
 
-    // close modal button
-    closeBtn.addEventListener("click", () => {
-      modal.classList.remove("show");
+    // close button
+    closeModal.addEventListener("click", function(){
+
+      modal.style.display = "none";
+
     });
 
-    // outside click close
-    window.addEventListener("click", (e) => {
+    // outside click
+    window.addEventListener("click", function(e){
 
       if(e.target === modal){
-        modal.classList.remove("show");
+
+        modal.style.display = "none";
       }
 
     });
