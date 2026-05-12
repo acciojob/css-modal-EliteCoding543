@@ -1,16 +1,212 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Modal</title>
+
+  <style>
+
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background-color: #f4f4f4;
+    }
+
+    /* ================= OPEN BUTTON ================= */
+
+    #openModal{
+      padding: 12px 22px;
+
+      border: none;
+
+      background-color: #0c831f;
+
+      color: white;
+
+      border-radius: 8px;
+
+      font-size: 16px;
+
+      cursor: pointer;
+    }
+
+    /* ================= MODAL ================= */
+
+    .modal{
+      position: fixed;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      background-color: rgba(0,0,0,0.5);
+
+      display: none;
+
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* show modal */
+
+    .modal.show{
+      display: flex;
+    }
+
+    /* ================= MODAL CONTENT ================= */
+
+    .modal-content{
+      width: 400px;
+
+      background-color: white;
+
+      border-radius: 10px;
+
+      overflow: hidden;
+
+      animation: popup 0.3s ease;
+    }
+
+    /* animation */
+
+    @keyframes popup{
+
+      from{
+        transform: scale(0.7);
+        opacity: 0;
+      }
+
+      to{
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* ================= HEADER ================= */
+
+    .modal-header{
+      padding: 16px 20px;
+
+      background-color: #0c831f;
+
+      color: white;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h2{
+      font-size: 22px;
+    }
+
+    /* close button */
+
+    .close-modal{
+      background: transparent;
+
+      border: none;
+
+      color: white;
+
+      font-size: 24px;
+
+      cursor: pointer;
+    }
+
+    /* ================= BODY ================= */
+
+    .modal-body{
+      padding: 25px 20px;
+
+      font-size: 18px;
+
+      color: #333;
+    }
+
+  </style>
 </head>
 
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+
+  <!-- ================= BUTTON ================= -->
+
+  <button id="openModal">
+    Open Modal
+  </button>
+
+  <!-- ================= MODAL ================= -->
+
+  <div class="modal" id="modal">
+
+    <div class="modal-content">
+
+      <!-- Header -->
+
+      <div class="modal-header">
+
+        <h2>Modal Header</h2>
+
+        <button class="close-modal">
+          &times;
+        </button>
+
+      </div>
+
+      <!-- Body -->
+
+      <div class="modal-body">
+
+        <p>Modal Body Content</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    const openBtn = document.getElementById("openModal");
+
+    const modal = document.getElementById("modal");
+
+    const closeBtn = document.querySelector(".close-modal");
+
+    // open modal
+    openBtn.addEventListener("click", () => {
+      modal.classList.add("show");
+    });
+
+    // close modal button
+    closeBtn.addEventListener("click", () => {
+      modal.classList.remove("show");
+    });
+
+    // outside click close
+    window.addEventListener("click", (e) => {
+
+      if(e.target === modal){
+        modal.classList.remove("show");
+      }
+
+    });
+
+  </script>
 
 </body>
-
 </html>
